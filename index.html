@@ -95,6 +95,30 @@ h1 { font-family: 'Parisienne', cursive; }
   </style>
 </head>
 <body>
+<!-- Overlay -->
+<div id="overlay" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 transition-opacity duration-700">
+  <p class="text-5xl relative bottom-3 z-10 cookie-regular">Nurafifah</p>
+  <p class="text-4xl relative z-10 style-script-regular">&</p>
+  <p class="text-5xl relative z-10 cookie-regular">Irfan</p>
+  <p class="mt-6 text-sm">tekan untuk mula</p>
+</div>
+
+<!-- Hidden YouTube iframe -->
+<iframe id="bg-music" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
+
+<script>
+  document.getElementById("overlay").addEventListener("click", function () {
+    // Fade out overlay
+    this.style.opacity = "0";
+    setTimeout(() => {
+      this.style.display = "none";
+    }, 700); // matches transition duration
+
+    // Autoplay YouTube music starting at 10 seconds
+    const iframe = document.getElementById("bg-music");
+    iframe.src = "https://www.youtube.com/embed/gijhoo-qO9s?autoplay=1&controls=0&loop=1&playlist=gijhoo-qO9s&start=10";
+  });
+</script>
 
   <!-- Section 1 -->
   <section id="section1" class="h-screen relative flex items-center justify-center z-10"
@@ -385,6 +409,7 @@ h1 { font-family: 'Parisienne', cursive; }
 
 </body>
 </html>
+
 
 
 
