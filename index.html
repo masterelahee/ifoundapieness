@@ -97,14 +97,33 @@ h1 { font-family: 'Parisienne', cursive; }
 <body>
 <!-- Overlay -->
 <div id="overlay" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 transition-opacity duration-700">
-
   <p class="mt-6 text-sm">tekan untuk mula</p>
 </div>
 
-<!-- Hidden YouTube iframe -->
-<iframe id="bg-music" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
+<!-- YouTube player container -->
+<div id="player"></div>
 
+<!-- Load YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
+  let player;
+
+  // Called automatically when the API is ready
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '0',
+      width: '0',
+      videoId: 'gijhoo-qO9s', // your video ID
+      playerVars: {
+        autoplay: 0,   // don’t autoplay yet
+        controls: 0,
+        loop: 1,
+        playlist: 'gijhoo-qO9s',
+        start: 10
+      }
+    });
+  }
+
   document.getElementById("overlay").addEventListener("click", function () {
     // Fade out overlay
     this.style.opacity = "0";
@@ -112,11 +131,13 @@ h1 { font-family: 'Parisienne', cursive; }
       this.style.display = "none";
     }, 700); // matches transition duration
 
-    // Autoplay YouTube music starting at 10 seconds
-    const iframe = document.getElementById("bg-music");
-    iframe.src = "https://www.youtube.com/embed/gijhoo-qO9s?autoplay=1&controls=0&loop=1&playlist=gijhoo-qO9s&start=10";
+    // Trigger playback with a user gesture
+    if (player && player.playVideo) {
+      player.playVideo();
+    }
   });
 </script>
+
 
   <!-- Section 1 -->
   <section id="section1" class="h-screen relative flex items-center justify-center z-10"
@@ -407,6 +428,7 @@ h1 { font-family: 'Parisienne', cursive; }
 
 </body>
 </html>
+
 
 
 
