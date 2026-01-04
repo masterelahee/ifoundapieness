@@ -95,48 +95,25 @@ h1 { font-family: 'Parisienne', cursive; }
   </style>
 </head>
 <body>
-<!-- Overlay -->
-<div id="overlay" class="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50 transition-opacity duration-700">
-  <p class="mt-6 text-sm">tekan untuk mula</p>
-</div>
-
-<!-- YouTube player container -->
 <div id="player"></div>
-
-<!-- Load YouTube IFrame API -->
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
   let player;
-
-  // Called automatically when the API is ready
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-      height: '0',
-      width: '0',
-      videoId: 'gijhoo-qO9s', // your video ID
-      playerVars: {
-        autoplay: 0,   // don’t autoplay yet
-        controls: 0,
-        loop: 1,
-        playlist: 'gijhoo-qO9s',
-        start: 10
-      }
+      height: '200', // must be visible
+      width: '300',
+      videoId: 'gijhoo-qO9s',
+      playerVars: { controls: 0, start: 10 }
     });
   }
-
   document.getElementById("overlay").addEventListener("click", function () {
-    // Fade out overlay
     this.style.opacity = "0";
-    setTimeout(() => {
-      this.style.display = "none";
-    }, 700); // matches transition duration
-
-    // Trigger playback with a user gesture
-    if (player && player.playVideo) {
-      player.playVideo();
-    }
+    setTimeout(() => this.style.display = "none", 700);
+    player.playVideo();
   });
 </script>
+
 
 
   <!-- Section 1 -->
@@ -428,6 +405,7 @@ h1 { font-family: 'Parisienne', cursive; }
 
 </body>
 </html>
+
 
 
 
