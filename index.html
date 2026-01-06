@@ -112,7 +112,9 @@ h1 { font-family: 'Parisienne', cursive; }
     }, 700);
 
     // Play audio
-    document.getElementById("bg-music").play();
+    const audio = document.getElementById("bg-music");
+    audio.currentTime = 45;
+    audio.play();
   });
 </script>
 
@@ -405,6 +407,7 @@ h1 { font-family: 'Parisienne', cursive; }
 
 </body>
 </html>
+
 
 
 
